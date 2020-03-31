@@ -1,0 +1,33 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<p>
+</p>
+{% if current_user.is_authenticated %}
+        <p align="center">
+            <a href="groups" class="btn btn-secondary">Добавить класс</a>
+        </p>
+    {% endif %}
+{% if current_user.is_authenticated %}
+    {% for item in groups %}
+        <div class="col-md6 border rounded">
+            <h2><a href="/answers/{{ item.id }}">{{item.group_name}}</a></h2>
+            <div>
+                <a href="/group_edit/{{ item.id }}" class="btn btn-warning">Изменить класс</a>
+                <a href="/group_delete/{{ item.id }}" class="btn btn-danger">Удалить класс</a>
+                <a href="/group/{{ item.id }}" class="btn btn-secondary">Редактировать учеников</a>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class="alert alert-primary" role="alert">
+        Здесь будет отображаться список Ваших классов.
+    </div>
+    <div class="alert alert-secondary" role="alert">
+        Для начала работы необходимо пройти процедуру регистрации.
+    </div>
+    <div class="alert alert-dark" role="alert">
+        Если Вы уже зарегистрированы, необходимо войти в систему.
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3> {{title}} </h3>
+<p>
+</p>
+{% if current_user.is_authenticated %}
+    <p align="center">
+        {% set selected_student = st|random %}
+        {% set url = "/answer_add/" + selected_student.id|string %}
+        <a href={{url}}  class="btn btn-secondary btn-lg">Случайный ученик для опроса</a>
+    </p>
+    {% for item in st%}
+        <div class="col-md6 border rounded">
+            <h4>
+                {{item.surname}} {{item.first_name}} {{item.last_name}}
+            </h4>
+            <a href="/answer_add/{{ item.id }}" class="btn btn-warning">Опросить</a>
+            <a href="/answer_view/{{ item.id }}" class="btn btn-danger">Оценки</a>
+            {% set flag = 1 %}
+            {% for mr in lst %}
+                {% if mr.id_student == item.id %}
+                    {% if flag %}
+                        <div class="alert alert-danger" role="alert">
+                            Данный ученик уже был опрошен сегодня!
+                        </div>
+                        {% set flag = 0 %}
+                    {% endif %}
+                {% endif %}
+        {% endfor %}
+        </div>
+    {% endfor %}
+{% endif %}
+<p>
+</p>
+<a href="/" class="btn btn-dark">Назад</a>
+{% endblock %}

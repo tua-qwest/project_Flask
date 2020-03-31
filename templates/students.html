@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3> {{title}} </h3>
+<p>
+</p>
+{% if current_user.is_authenticated %}
+    <p align="center">
+        {% set url = "student_add/" + id|string %}
+        <a href={{url}}  class="btn btn-secondary">Добавить ученика</a>
+    </p>
+    {% for item in st%}
+        <div class="col-md6 border rounded">
+            <h4>{{item.surname}} {{item.first_name}} {{item.last_name}}</h4>
+        <div>
+            <a href="/student_edit/{{ item.id }}" class="btn btn-warning">Изменить</a>
+            <a href="/student_delete/{{ item.id }}" class="btn btn-danger">Удалить</a>
+        </div>
+        </div>
+    {% endfor %}
+{% endif %}
+<p></p>
+<a href="/" class="btn btn-dark">Назад</a>
+{% endblock %}

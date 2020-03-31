@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3> {{title}} </h3>
+<div class="alert alert-primary" role="alert">
+        <h2>{{ st.surname }} {{st.first_name}} {{st.last_name}}</h2>
+</div>
+{% if current_user.is_authenticated %}
+    {% for item in mr%}
+        <div class="col-md6 border rounded">
+            <h4>{{ item.date }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ item.mark }}
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="/answer_delete/{{ item.id }}" class="btn btn-danger">Удалить</a>
+            </h4>
+
+        </div>
+    {% endfor %}
+{% endif %}
+<p></p>
+<a href="/answers/{{ st.id_group }}" class="btn btn-dark">Назад</a>
+{% endblock %}
