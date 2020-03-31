@@ -252,7 +252,7 @@ def answer_delete(id):
 
 def main():
     db_session.global_init("db/edu.sqlite")
-    app.run(port=8080, host='127.0.0.1')
+    app.run()
 
 
 if __name__ == '__main__':
