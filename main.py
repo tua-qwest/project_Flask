@@ -1,7 +1,6 @@
 import datetime
 from flask import Flask, redirect, request, render_template, abort
-from data import db_session, register, users, login_form, group, group_form, \
-    student, student_form, answer, answer_form
+from data import db_session, register, users, login_form, group, group_form, student, student_form, answer, answer_form
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 
 app = Flask(__name__)
