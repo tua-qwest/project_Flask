@@ -5,3 +5,4 @@ wtforms
 sqlalchemy
 datetime
 werkzeug
+gunicorn
